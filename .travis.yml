@@ -14,10 +14,10 @@ before_script:
   - echo "no tests"
 
 script:
-  docker build -f udagram-api-feed/Dockerfile -t  mbuvi/udagram-api-feed:v1 udagram-api-feed
-  docker build -f udagram-api-user/Dockerfile -t  mbuvi/udagram-api-user:v1 udagram-api-user
-  docker build -f udagram-frontend/Dockerfile -t  mbuvi/udagram-frontend:v1 udagram-frontend
-  docker build -f udagram-reverseproxy/Dockerfile -t  mbuvi/udagram-reverseproxy:v1 udagram-reverseproxy
+  docker build . -t mbuvi/udagram-api-feed:v1 -f udagram-api-feed/Dockerfile
+  docker build . -t mbuvi/udagram-api-user:v1 -f udagram-api-user/Dockerfile
+  docker build . -t mbuvi/udagram-frontend:v1 -f udagram-frontend/Dockerfile
+  docker build . -t mbuvi/reverseproxy:v1 -f udagram-reverseproxy/Dockerfile
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
